@@ -1,6 +1,6 @@
 # GenesisEssentials by Seshpenguin
 # https://dolphinbox.net/
-# Version: 0.2-DEV January 2015
+# Version: 0.3-DEV January 2015
 #
 #   Copyright 2015 DolphinBox
 #
@@ -30,17 +30,18 @@ on login:
 		give a cake to the player
 		wait a tick
 		send "You are lucky today! Have a free cake!" to the player
+	
 
 command /icanhasge:
 	description: Seecret Command!
 	trigger:
-		send "This server is running GenesisEssentials version 0.1-DEV (This is a unstable build!)" to player
+		send "This server is running GenesisEssentials version 0.3-DEV (This is a unstable build!)" to player
 		
 command /ge version:
 	description: Check the version of GenesisEssentials!
 	permission: ge.version
 	trigger:
-		send "This server is running GenesisEssentials version 0.1-DEV (This is a unstable build!)" to player
+		send "This server is running GenesisEssentials version 0.3-DEV (This is a unstable build!)" to player
 
 
 on break of glass:
@@ -73,6 +74,27 @@ command /home:
 		teleport player to {homes.%player%.location}
 		message "[gEssentials] Teleported to your home!"
 		
+command /setspawn:
+	description: Set the Servers Spawn!
+	permission: ge.setspawn
+	executable by: players
+	trigger:
+		set {server.spawn.location} to location of player
+		message "[gEssentials]Set the server spawn to <grey>%location of player%<reset>!"	
+	
+command /spawn:
+	description: Teleport yourself to spawn!
+	permission: ge.spawn
+	executable by: players
+	trigger:
+		if {server.spawn.location} is not set:
+			message "[gEssentials] The server spawn is not set! Use /setspawn"
+			stop trigger
+		teleport player to {server.spawn.location}
+		message "[gEssentials] Teleported to spawn!"
+		
+
+	
 command /setmotd <text>:
 	permission: ge.setmotd
 	description: Sets message of the day
@@ -88,6 +110,7 @@ command /motd:
 on join:
 	wait a tick
 	message {motd}
+	teleport player to {server.spawn.location}
 	
 aliases:
 	nonsolid = 0, 6, 27, 28, 30, 31, 32, 37, 38, 39, 40, 50, 55, 59, 63, 64, 65, 66, 68, 69, 70, 71, 72, 75, 76, 77, 78:0, 83, 85:4-7, 104, 105, 106, 111, 115, 131, 132, 141, 142, 143, 147, 148, 157
