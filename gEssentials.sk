@@ -73,7 +73,7 @@ command /home:
 			stop trigger
 		teleport player to {homes.%player%.location}
 		play mob spawner flames at the player
-		message "[gEssentials] Teleported to your home!"
+		send action bar from "[gEssentials] Teleported to your home!" to player
 		
 command /setspawn:
 	description: Set the Servers Spawn!
@@ -93,7 +93,7 @@ command /spawn:
 			stop trigger
 		teleport player to {server.spawn.location}
 		play mob spawner flames at the player
-		message "[gEssentials] Teleported to spawn!"
+		send action bar from "[gEssentials] Teleported to spawn!" to player
 		
 
 	
@@ -114,6 +114,8 @@ on join:
 	message {motd}
 	teleport player to {server.spawn.location}
 	play mob spawner flames at the player
+	send title from "&a&lWelcome to GenesisHub!" and "&6Enjoy your stay, %player%!" to player for 2, 10, 2
+	send action bar from "&a%player% &bjoined GenesisHub!"
 	
 aliases:
 	nonsolid = 0, 6, 27, 28, 30, 31, 32, 37, 38, 39, 40, 50, 55, 59, 63, 64, 65, 66, 68, 69, 70, 71, 72, 75, 76, 77, 78:0, 83, 85:4-7, 104, 105, 106, 111, 115, 131, 132, 141, 142, 143, 147, 148, 157
